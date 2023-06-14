@@ -17,6 +17,7 @@ model Order {
   price           Int
   amount          Int
   shippingAddress String
+  shippingCarrier String?
   note            String
   productId       String
   billingId       String

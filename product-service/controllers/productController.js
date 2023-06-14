@@ -94,3 +94,27 @@ export async function getProductById(req, res) {
     });
   }
 }
+
+export async function updateProductById(req, res) {
+  const { productId } = req.params;
+  const { quantities } = req.body;
+
+  try {
+    const updatedProduct = await prisma.product.update({
+      where: { id: productId },
+      data: { quantities: parseInt(quantities) },
+    });
+
+    res.status(200).json({
+      ok: true,
+      data: { updatedProduct },
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      ok: false,
+      message: "Kesalahan pada server.",
+      statusCode: 500,
+    });
+  }
+}

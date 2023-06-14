@@ -1,0 +1,19 @@
+generator client {
+    provider = "prisma-client-js"
+    output   = "./generated/client_payment"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_PAYMENT_URL")
+}
+
+model TemporaryTransaction {
+    id            String   @id @default(uuid())
+    productStock  Int
+    orderQuantity Int
+    orderId       String
+    productId     String
+    billingId     String
+    expiresAt     DateTime
+}

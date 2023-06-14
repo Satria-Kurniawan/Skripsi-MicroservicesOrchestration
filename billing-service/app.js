@@ -10,4 +10,4 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/api/billing", router);
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(port, () => console.log(`Billing service running on port ${port}`));

@@ -11,4 +11,4 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/user/", router);
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(port, () => console.log(`User service running on port ${port}`));
