@@ -167,16 +167,19 @@ export async function cancelTransactions(req, res) {
         const orderResult = await orderResponse.json();
 
         if (productResult.ok && billingResult.ok && orderResult.ok)
-          resolve("Transactions cancel success");
+          resolve({
+            message: "Transactions cancel success",
+            temporaryTransactions,
+          });
         else reject("error");
       }
     });
 
     cancel
       .then(async (result) => {
-        await prisma.temporaryTransaction.deleteMany({
-          where: { expiresAt: { lt: currentDate } },
-        });
+        // await prisma.temporaryTransaction.deleteMany({
+        //   where: { expiresAt: { lt: currentDate } },
+        // });
 
         // console.log(result);
         res.send(result);

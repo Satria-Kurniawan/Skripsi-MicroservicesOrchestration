@@ -17,7 +17,7 @@ export async function createBilling(req, res) {
     const userId = req.user.id;
 
     const currentDate = new Date();
-    const dueDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
+    const dueDate = new Date(currentDate.setDate(currentDate.getDate()));
 
     const paymentStatus = "UNPAID";
 

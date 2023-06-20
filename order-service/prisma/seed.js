@@ -19,12 +19,12 @@ async function main() {
   let billings = [];
   let orders = [];
 
-  const dataLength = 1000;
+  const dataLength = 2500;
 
   for (let i = 0; i < dataLength; i++) {
     const user = await prismaUser.user.create({
       data: {
-        email: faker.internet.email(),
+        email: faker.internet.email() + new Date().toISOString(),
         name: faker.person.fullName(),
         password: faker.internet.password(),
       },
@@ -79,18 +79,18 @@ async function main() {
     orders.push(order);
   }
 
-  for (let i = 0; i < dataLength; i++) {
-    await prismaPayment.temporaryTransaction.create({
-      data: {
-        orderId: orders[Math.floor(Math.random() * orders.length)].id,
-        billingId: billings[Math.floor(Math.random() * billings.length)].id,
-        productId: products[Math.floor(Math.random() * products.length)].id,
-        expiresAt: faker.date.anytime(),
-        productStock: 100,
-        orderQuantity: 1,
-      },
-    });
-  }
+  // for (let i = 0; i < dataLength; i++) {
+  //   await prismaPayment.temporaryTransaction.create({
+  //     data: {
+  //       orderId: orders[Math.floor(Math.random() * orders.length)].id,
+  //       billingId: billings[Math.floor(Math.random() * billings.length)].id,
+  //       productId: products[Math.floor(Math.random() * products.length)].id,
+  //       expiresAt: faker.date.anytime(),
+  //       productStock: 100,
+  //       orderQuantity: 1,
+  //     },
+  //   });
+  // }
 
   for (let i = 0; i < dataLength; i++) {
     await prismaShipping.shipping.create({
